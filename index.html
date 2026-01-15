@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>十周年答谢宴 | 10th Anniversary Appreciation</title>
+
+  <!-- Link preview (optional) -->
+  <meta property="og:title" content="十周年答谢宴 | 10th Anniversary Appreciation" />
+  <meta property="og:description" content="欢迎大家的到来，请填写报名信息以便后台统计。" />
+  <meta property="og:image" content="assets/hero.jpg" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Hero -->
+    <header class="hero" style="background-image:url('assets/hero.jpg')">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <img class="logo" src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+        <div class="hero__title">
+          <h1>十周年答谢宴</h1>
+          <p class="subtitle">10th Anniversary Appreciation Dinner</p>
+        </div>
+        <div class="hero__tag">RSVP / 报名登记</div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="card">
+      <h2>欢迎大家的到来</h2>
+      <p class="muted">
+        晚宴报名信息请大家填写完整，以便于后台进行统计与安排。
+        <br/>
+        Please complete the registration details for our arrangement and headcount planning.
+      </p>
+    </section>
+
+    <!-- Event info -->
+    <section class="card">
+      <h2>活动信息 | Event Details</h2>
+      <div class="infoGrid">
+        <div class="infoItem">
+          <div class="label">日期 Date</div>
+          <div class="value" id="evtDate">2026-02-28 (Sat)</div>
+        </div>
+        <div class="infoItem">
+          <div class="label">时间 Time</div>
+          <div class="value" id="evtTime">18:30 - 21:30</div>
+        </div>
+        <div class="infoItem">
+          <div class="label">地点 Venue</div>
+          <div class="value" id="evtVenue">（请填写酒店/餐厅名称）</div>
+        </div>
+        <div class="infoItem">
+          <div class="label">地址 Address</div>
+          <div class="value" id="evtAddr">（请填写详细地址）</div>
+        </div>
+        <div class="infoItem">
+          <div class="label">着装 Dress Code</div>
+          <div class="value" id="evtDress">Smart Casual</div>
+        </div>
+        <div class="infoItem">
+          <div class="label">联系人 Contact</div>
+          <div class="value" id="evtContact">子龙 / Zilong：+86 xxxx xxxx</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Form -->
+    <section class="card">
+      <h2>报名表 | Registration</h2>
+
+        <form id="rsvpForm" class="form">
+
+        <div class="field">
+            <label>姓名 Name <span class="req">*</span></label>
+            <input type="text" name="name" placeholder="请输入姓名 / Your name" required />
+        </div>
+
+        <div class="field">
+            <label>手机 Mobile <span class="req">*</span></label>
+            <input type="tel" name="mobile" placeholder="+86 / +65 ..." required />
+        </div>
+
+        <div class="field">
+            <label>成人 Adult Pax <span class="req">*</span></label>
+            <select name="adultPax" required>
+            <option value="">请选择</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>儿童 Child Pax</label>
+            <select name="childPax">
+            <option value="0">0</option>
+            <option>1</option><option>2</option><option>3</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>备注 Note</label>
+            <textarea name="note" rows="3" placeholder="如有特殊需求请备注"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <button class="btn" type="submit" id="submitBtn">
+            提交报名 / Submit
+        </button>
+
+        <div class="status" id="statusBox"></div>
+        </form>
+
+
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footline">© 10th Anniversary Event</div>
+      <div class="footline muted">Hosted on GitHub Pages</div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
