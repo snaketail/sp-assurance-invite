@@ -1,0 +1,1030 @@
+:root{
+  --gold: #D6B56C;
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.68);
+  --line: rgba(255,255,255,.14);
+  --overlay: rgba(0,0,0,.35);
+  --overlay-strong: rgba(0,0,0,.48);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; }
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  overflow:hidden; /* we control paging */
+}
+
+/* ===== Layer 1: Background ===== */
+.bg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Side fill color (your “redder brighter” option) */
+.bg::before{
+  content:"";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(200, 24, 30, 0.00) 0%,
+      rgba(200, 24, 30, 0.28) 5%,
+      rgba(200, 24, 30, 0.65) 10%,
+      rgba(200, 24, 30, 0.92) 15%,
+      rgba(200, 24, 30, 0.92) 85%,
+      rgba(200, 24, 30, 0.65) 90%,
+      rgba(200, 24, 30, 0.28) 95%,
+      rgba(200, 24, 30, 0.00) 100%
+    );
+}
+
+/* Artwork */
+.bg::after{
+  content:"";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  background-image: url("assets/bg-landscape.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+}
+
+/* ===== Layer 3: Brand (Logo) ===== */
+.brand{
+  position: fixed;
+  top: 4%;
+  right: 5%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.brand__logo{
+  width: 220px;
+  max-width: 38vw;
+  height: auto;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,.45));
+}
+
+@media (max-width: 768px){
+  .brand{
+    top: 5.5%;
+    right: 5%;
+  }
+  .brand__logo{
+    width: 180px;
+  }
+}
+
+/* ===== Optional: Music button (manual) ===== */
+.musicBtn{
+  position: fixed;
+  left: 5%;
+  top: 3.5%;
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  cursor: pointer;
+}
+.musicBtn.isOn{
+  border-color: rgba(214,181,108,.55);
+  box-shadow: 0 0 0 3px rgba(214,181,108,.12);
+}
+
+/* ===== Layer 4: Deck + Pages ===== */
+.deck{
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  transition: transform 520ms ease;
+  will-change: transform;
+}
+
+.page{
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* default overlay (darken bg for readability) */
+.page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--overlay);
+  z-index:0;
+}
+
+/* Page-specific overlays */
+.page--form::before{ background: var(--overlay-strong); }
+.page--info::before{ background: rgba(0,0,0,.40); }
+
+.content{
+  position: relative;
+  z-index: 1;
+  width: min(70vw, 760px);
+  padding: 18px;
+  margin-top: 64px;
+}
+@media (max-width: 768px){
+  .content{
+    width: min(86vw, 520px);
+    margin-top: 72px;
+  }
+}
+
+/* ===== Page 1: Title styling ===== */
+.page--center .content{
+  width: min(90vw, 1100px);
+}
+
+.page--center .h1{
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: clamp(42px, 4.8vw, 72px);
+  text-align: center;
+  line-height: 1.22;
+  letter-spacing: 0.6px;
+  margin: 0 0 14px 0;
+  transform: translateY(-15vh);
+
+  color: rgba(255, 248, 230, 0.95);
+  text-shadow:
+    0 2px 14px rgba(0,0,0,0.35),
+    0 0 28px rgba(255, 220, 160, 0.18);
+}
+
+.page--center .subtitle{
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(18px, 2.0vw, 28px);
+  text-align: center;
+  line-height: 1.22;
+  letter-spacing: 0.6px;
+  margin: 0;
+  transform: translateY(-10vh);
+
+  color: rgba(255, 245, 225, 0.72);
+  text-shadow:
+    0 1px 10px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 480px){
+  .content--title{
+    transform: translateY(-2.2vh);
+  }
+  .page--center .h1{
+    font-size: clamp(40px, 10vw, 58px);
+    letter-spacing: 0.6px;
+  }
+  .page--center .subtitle{
+    font-size: clamp(14px, 4.2vw, 18px);
+    letter-spacing: 0.4px;
+  }
+}
+
+
+/* Shared glass card style (same look as Page 3 cards) */
+.glassCard{
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+
+/* ===== Page 2: Message Card (Card first, then lines) ===== */
+.page--message .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-card{
+  position: relative;
+  max-width: 780px;
+  padding: 42px 46px;
+
+  /* MATCH Page 3 card look */
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  box-shadow: none;
+
+  text-align: center;
+
+  /* Card entrance animation */
+  opacity: 0;
+  transform: translateY(18px) scale(0.99);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.message-card.is-visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+.card-accent{
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    to right,
+    rgba(214,181,108,0.00),
+    rgba(214,181,108,0.70),
+    rgba(214,181,108,0.00)
+  );
+  opacity: 0.75;
+}
+
+.message-line{
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(20px, 2.2vw, 24px);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.95);
+  margin: 0 0 22px 0;
+
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.message-line.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message-footer{
+  margin-top: 28px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+}
+
+@media (max-width: 768px){
+  .message-card{
+    padding: 32px 24px;
+    border-radius: 14px;
+  }
+  .message-line{
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .message-footer{
+    font-size: 12px;
+  }
+  .card-accent{
+    left: 14px;
+    right: 14px;
+  }
+}
+
+/* ===== Page 3: Cards (animate all at once as a group) ===== */
+/* ===== Page 3 (Centered label + content style, like reference) ===== */
+
+/* ===== Page 3 enter animation: start hidden ===== */
+.page--info .infoBlock{
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
+}
+
+/* When revealed */
+.page--info .infoBlock.is-in{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+.page--info .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoStack{
+  width: min(84vw, 920px);
+  display: grid;
+  gap: 18px;
+  margin: 0 auto;
+
+  /* keep stack centered even if container grows */
+  justify-items: center;
+}
+
+
+.infoBlock{
+  width: 100%;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  padding: 22px 22px;
+
+  text-align: center;  /* key: centered */
+}
+
+/* Gold framed label */
+.infoTag{
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(214,181,108,.70);
+  border-radius: 10px;
+
+  color: rgba(214,181,108,.95);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-size: 18px;
+
+  margin-bottom: 14px;
+  background: rgba(0,0,0,.10);
+}
+
+/* Big center title */
+.infoTitle{
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.15;
+  color: rgba(255,255,255,.95);
+  margin: 2px 0 8px 0;
+}
+
+/* optional sub title */
+.infoSubTitle{
+  font-size: 18px;
+  color: rgba(255,255,255,.78);
+  margin-bottom: 14px;
+}
+
+/* lines container */
+.infoLines{
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* schedule line (time + desc) */
+.infoLine{
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 18px;
+  line-height: 1.4;
+  color: rgba(255,255,255,.92);
+}
+
+.infoLine__time{
+  font-weight: 800;
+  color: rgba(255,255,255,.95);
+  min-width: 64px;
+  text-align: right;
+}
+
+.infoLine__desc{
+  color: rgba(255,255,255,.90);
+  text-align: left;
+}
+
+/* address style */
+.infoAddress{
+  font-size: 17px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.90);
+}
+
+/* small hint */
+.infoHint{
+  font-size: 16px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.70);
+  margin-top: 6px;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .infoStack{
+    width: min(88vw, 560px);
+    gap: 14px;
+  }
+  .infoBlock{
+    padding: 18px 16px;
+  }
+  .infoTag{
+    font-size: 12px;
+    padding: 7px 14px;
+  }
+  .infoLine{
+    font-size: 16px;
+    gap: 8px;
+  }
+  .infoLine__time{
+    min-width: 56px;
+  }
+  .infoAddress{
+    font-size: 16px;
+  }
+}
+
+
+/* ===== Page 4: Form ===== */
+.h2{
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+.helper{
+  margin: 0 0 16px 0;
+  color: var(--muted);
+  line-height: 1.35;
+}
+.form{
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+}
+.field label{
+  display:block;
+  font-size: 12px;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 6px;
+}
+.req{ color: #ff6b6b; }
+
+input, select, textarea{
+  width: 100%;
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 12px;
+  outline:none;
+}
+
+textarea{ resize:none; }
+
+input:focus, select:focus, textarea:focus{
+  border-color: rgba(214,181,108,.55);
+  box-shadow: 0 0 0 3px rgba(214,181,108,.12);
+}
+
+.fieldRow{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.btn{
+  margin-top: 4px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 700;
+  cursor:pointer;
+  background: linear-gradient(135deg, rgba(214,181,108,.95), rgba(214,181,108,.72));
+  color: #101014;
+}
+.btn:disabled{ opacity:.55; cursor:not-allowed; }
+
+.status{
+  display:none;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.3;
+}
+.status.ok{ display:block; background: rgba(34,197,94,.10); border-color: rgba(34,197,94,.35); }
+.status.err{ display:block; background: rgba(239,68,68,.10); border-color: rgba(239,68,68,.35); }
+
+.smallNote{
+  margin: 0;
+  color: rgba(255,255,255,.65);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.success{
+  border: 1px solid rgba(214,181,108,.35);
+  background: rgba(0,0,0,.18);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+/* ===== Page 4: Compact single-card form (match screenshot #2) ===== */
+.page--form .content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.page--form .formCard.formCard--compact{
+  width: min(560px, 86vw);
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.14);
+  backdrop-filter: blur(8px);
+}
+
+.page--form .formCard--compact .infoTag{
+  margin: 0 auto 10px;
+}
+
+.page--form .formCard--compact .formNote{
+  margin: 0 0 14px;
+  text-align:center;
+  font-size: 12px;
+  color: rgba(255,255,255,.80);
+}
+
+.page--form .formCard--compact .form{
+  gap: 10px;
+}
+
+.page--form .formCard--compact .field label{
+  text-align:center;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.page--form .formCard--compact input,
+.page--form .formCard--compact select,
+.page--form .formCard--compact textarea{
+  background: rgba(255,255,255,.92);
+  color: #1b1b1f;
+  border-color: rgba(0,0,0,.12);
+  padding: 10px 12px;
+}
+
+.page--form .formCard--compact input::placeholder,
+.page--form .formCard--compact textarea::placeholder{
+  color: rgba(27,27,31,.55);
+}
+
+.page--form .formCard--compact input:focus,
+.page--form .formCard--compact select:focus,
+.page--form .formCard--compact textarea:focus{
+  border-color: rgba(214,181,108,.70);
+  box-shadow: 0 0 0 3px rgba(214,181,108,.16);
+}
+
+.page--form .formCard--compact .fieldRow{
+  gap: 10px;
+}
+
+.page--form .formCard--compact .btn{
+  padding: 12px 14px;
+}
+
+@media (max-width: 520px){
+  .page--form .formCard.formCard--compact{
+    width: min(520px, 92vw);
+    padding: 16px 14px 14px;
+  }
+  .page--form .formCard--compact .fieldRow{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+.h3{
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px 0;
+}
+.muted{ color: var(--muted); }
+
+/* ===== Page 4 Form (cards like Page 3 + input style like screenshot) ===== */
+
+.page--form .content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formStack{
+  width: min(88vw, 760px);
+  display: grid;
+  gap: 14px;
+  margin: 0 auto;
+}
+
+.formHeader{
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  padding: 18px 18px;
+  text-align: center;
+}
+
+.formHeader__note{
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.4;
+}
+
+.rsvpForm{
+  display: grid;
+  gap: 12px;
+}
+
+/* Each item as a "card block" */
+.formBlock{
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  padding: 14px 14px;
+}
+
+.formLabel{
+  font-weight: 700;
+  font-size: 16px;
+  color: rgba(255,255,255,.92);
+  margin-bottom: 10px;
+}
+
+.req{
+  color: #ff4d4d;
+  font-weight: 800;
+}
+
+/* Input style like screenshot: white rounded fields */
+.formControl{
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.85);
+  background: rgba(255,255,255,.96);
+  color: rgba(0,0,0,.88);
+
+  padding: 0 14px;
+  font-size: 16px;
+  outline: none;
+}
+
+.formControl::placeholder{
+  color: rgba(0,0,0,.45);
+}
+
+.formControl:focus{
+  border-color: rgba(214,181,108,.95);
+  box-shadow: 0 0 0 3px rgba(214,181,108,.18);
+}
+
+.formControl--textarea{
+  height: auto;
+  padding: 12px 14px;
+  resize: none;
+}
+
+/* Submit button like screenshot (gold/orange bar) */
+.btnSubmit{
+  height: 52px;
+  border-radius: 10px;
+  border: 1px solid rgba(214,181,108,.85);
+  background: rgba(176,118,34,.88);
+  color: rgba(255,255,255,.95);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+}
+
+.btnSubmit:hover{
+  background: rgba(176,118,34,.96);
+}
+
+.btnSubmit:disabled{
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Status + footer */
+.status{
+  min-height: 18px;
+  font-size: 14px;
+  color: rgba(255,255,255,.85);
+  text-align: center;
+}
+
+.status.err{ color: #ffb3b3; }
+.status.ok{ color: rgba(214,181,108,.95); }
+
+.formFooter{
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.55);
+  text-align: center;
+}
+
+/* Success box */
+.successBox{
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.16);
+  border-radius: 14px;
+  padding: 22px 18px;
+  text-align: center;
+}
+
+.successTitle{
+  font-family: "Playfair Display", serif;
+  font-size: 30px;
+  margin-top: 10px;
+  color: rgba(255,255,255,.95);
+}
+
+.successText{
+  margin-top: 8px;
+  font-size: 16px;
+  color: rgba(255,255,255,.80);
+}
+
+/* ===== Page 4 Form: compact sizing to match Page 3 card area ===== */
+
+.page--form .content{
+  align-items: center;
+}
+
+.formStack{
+  /* narrower like Page 3 card group */
+  width: min(82vw, 820px);
+  max-width: 820px;
+  gap: 12px;
+}
+
+/* make header smaller */
+.formHeader{
+  padding: 14px 16px;
+}
+.formHeader__note{
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* compact spacing */
+.rsvpForm{
+  gap: 10px;
+}
+
+/* compact blocks */
+.formBlock{
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+/* label smaller */
+.formLabel{
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* inputs smaller height */
+.formControl{
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 0 12px;
+}
+.formControl--textarea{
+  padding: 10px 12px;
+  min-height: 88px;
+}
+
+/* button smaller */
+.btnSubmit{
+  height: 46px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+/* --- Desktop: two-column form like "card area" height --- */
+@media (min-width: 900px){
+  .rsvpForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px; /* row / col */
+  }
+  .span2{ grid-column: 1 / -1; }
+  .span1{ grid-column: span 1; }
+
+  /* status + button + footer should also span full width */
+  #statusBox{ grid-column: 1 / -1; }
+  .btnSubmit{ grid-column: 1 / -1; }
+  .formFooter{ grid-column: 1 / -1; }
+}
+
+/* Mobile: keep single column, but still compact */
+@media (max-width: 768px){
+  .formStack{
+    width: min(92vw, 560px);
+  }
+  .formControl{
+    height: 44px; /* slightly larger for touch */
+    font-size: 16px;
+  }
+}
+
+
+
+/* ===== Layer 5: Navigation cues ===== */
+.navCues{
+  position: fixed;
+  left: 50%;
+  bottom: 3.2%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  pointer-events: auto;
+}
+.navBtn{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  cursor:pointer;
+  animation: floaty 1.2s ease-in-out infinite;
+}
+.navBtn:active{ transform: scale(.98); }
+.pager{
+  font-size: 12px;
+  color: rgba(255,255,255,.75);
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(0,0,0,.14);
+}
+
+@keyframes floaty{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .deck{ transition: none; }
+  .navBtn{ animation: none; }
+}
+
+
+/* ===== FORCE Page 4: narrower + shorter (override everything) ===== */
+
+.page--form .formStack{
+  width: min(560px, 86vw) !important;   /* 关键：直接变窄 */
+  max-width: 560px !important;
+  gap: 10px !important;
+  margin: 0 auto !important;
+}
+
+.page--form .formHeader{
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+}
+
+.page--form .formHeader__note{
+  margin-top: 6px !important;
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+}
+
+.page--form .rsvpForm{
+  gap: 8px !important;
+}
+
+/* 每个表单块更矮 */
+.page--form .formBlock{
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+}
+
+/* label 更小 */
+.page--form .formLabel{
+  font-size: 13px !important;
+  margin-bottom: 6px !important;
+}
+
+/* 输入框高度更低 */
+.page--form .formControl{
+  height: 38px !important;
+  font-size: 14px !important;
+  padding: 0 12px !important;
+  border-radius: 10px !important;
+}
+
+/* Remark 更矮（你现在太高了） */
+.page--form .formControl--textarea{
+  min-height: 64px !important;
+  padding: 10px 12px !important;
+}
+
+/* 按钮更矮一点 */
+.page--form .btnSubmit{
+  height: 44px !important;
+  font-size: 16px !important;
+}
+
+/* footer 更紧凑 */
+.page--form .formFooter{
+  margin-top: 4px !important;
+  font-size: 11px !important;
+  line-height: 1.25 !important;
+}
+
+/* ===== Page 4: Bigger form typography (ONLY Page 4) ===== */
+.page--form .formCard--compact{
+  font-size: 15px; /* 整体基准字号放大 */
+}
+
+/* label */
+.page--form .formCard--compact .formLabel{
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* input / select */
+.page--form .formCard--compact .formControl{
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* placeholder */
+.page--form .formCard--compact .formControl::placeholder{
+  font-size: 14px;
+}
+
+/* Registration note */
+.page--form .formCard--compact .formNote{
+  font-size: 13px;
+}
+
+/* Submit button */
+.page--form .formCard--compact .btnSubmit{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Success message (after submit) */
+.page--form .formCard--compact .success h3{
+  font-size: 18px;
+}
+.page--form .formCard--compact .success p{
+  font-size: 14px;
+}
+
+/* Mobile 微调（防止过大） */
+@media (max-width: 520px){
+  .page--form .formCard--compact{
+    font-size: 14px;
+  }
+  .page--form .formCard--compact .formControl{
+    font-size: 14px;
+  }
+  .page--form .formCard--compact .btnSubmit{
+    font-size: 15px;
+  }
+}
+
+/* ===============================
+   Mobile: use portrait background
+   =============================== */
+@media (max-width: 768px) {
+  .page {
+    background-image: url("assets/bg-portrait.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+}

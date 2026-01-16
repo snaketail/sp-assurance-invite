@@ -1,130 +1,221 @@
 <!doctype html>
-<html lang="zh-Hans">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>十周年答谢宴 | 10th Anniversary Appreciation</title>
+  <title>SP-Assurance Client Appreciation Dinner</title>
 
-  <!-- Link preview (optional) -->
-  <meta property="og:title" content="十周年答谢宴 | 10th Anniversary Appreciation" />
-  <meta property="og:description" content="欢迎大家的到来，请填写报名信息以便后台统计。" />
-  <meta property="og:image" content="assets/hero.jpg" />
+  <!-- Optional: link preview -->
+  <meta property="og:title" content="SP-Assurance Client Appreciation Dinner" />
+  <meta property="og:description" content="A Celebration of Gratitude and New Beginnings" />
+  <meta property="og:image" content="assets/bg-portrait.png" />
 
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <div class="page">
-    <!-- Hero -->
-    <header class="hero" style="background-image:url('assets/hero.jpg')">
-      <div class="hero__overlay"></div>
-      <div class="hero__content">
-        <img class="logo" src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
-        <div class="hero__title">
-          <h1>十周年答谢宴</h1>
-          <p class="subtitle">10th Anniversary Appreciation Dinner</p>
-        </div>
-        <div class="hero__tag">RSVP / 报名登记</div>
-      </div>
-    </header>
+  <!-- Layer 1: Background -->
+  <div class="bg" aria-hidden="true"></div>
 
-    <!-- Intro -->
-    <section class="card">
-      <h2>欢迎大家的到来</h2>
-      <p class="muted">
-        晚宴报名信息请大家填写完整，以便于后台进行统计与安排。
-        <br/>
-        Please complete the registration details for our arrangement and headcount planning.
-      </p>
-    </section>
-
-    <!-- Event info -->
-    <section class="card">
-      <h2>活动信息 | Event Details</h2>
-      <div class="infoGrid">
-        <div class="infoItem">
-          <div class="label">日期 Date</div>
-          <div class="value" id="evtDate">2026-02-28 (Sat)</div>
-        </div>
-        <div class="infoItem">
-          <div class="label">时间 Time</div>
-          <div class="value" id="evtTime">18:30 - 21:30</div>
-        </div>
-        <div class="infoItem">
-          <div class="label">地点 Venue</div>
-          <div class="value" id="evtVenue">（请填写酒店/餐厅名称）</div>
-        </div>
-        <div class="infoItem">
-          <div class="label">地址 Address</div>
-          <div class="value" id="evtAddr">（请填写详细地址）</div>
-        </div>
-        <div class="infoItem">
-          <div class="label">着装 Dress Code</div>
-          <div class="value" id="evtDress">Smart Casual</div>
-        </div>
-        <div class="infoItem">
-          <div class="label">联系人 Contact</div>
-          <div class="value" id="evtContact">子龙 / Zilong：+86 xxxx xxxx</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RSVP Form -->
-    <section class="card">
-      <h2>报名表 | Registration</h2>
-
-        <form id="rsvpForm" class="form">
-
-        <div class="field">
-            <label>姓名 Name <span class="req">*</span></label>
-            <input type="text" name="name" placeholder="请输入姓名 / Your name" required />
-        </div>
-
-        <div class="field">
-            <label>手机 Mobile <span class="req">*</span></label>
-            <input type="tel" name="mobile" placeholder="+86 / +65 ..." required />
-        </div>
-
-        <div class="field">
-            <label>成人 Adult Pax <span class="req">*</span></label>
-            <select name="adultPax" required>
-            <option value="">请选择</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>儿童 Child Pax</label>
-            <select name="childPax">
-            <option value="0">0</option>
-            <option>1</option><option>2</option><option>3</option>
-            </select>
-        </div>
-
-        <div class="field">
-            <label>备注 Note</label>
-            <textarea name="note" rows="3" placeholder="如有特殊需求请备注"></textarea>
-        </div>
-
-        <div class="divider"></div>
-
-        <button class="btn" type="submit" id="submitBtn">
-            提交报名 / Submit
-        </button>
-
-        <div class="status" id="statusBox"></div>
-        </form>
-
-
-
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footline">© 10th Anniversary Event</div>
-      <div class="footline muted">Hosted on GitHub Pages</div>
-    </footer>
+  <!-- Layer 3: Brand -->
+  <div class="brand">
+    <img src="assets/logo.png" alt="Assurance" class="brand__logo" />
   </div>
 
-  <script src="script.js"></script>
+  <!-- Optional: Music (manual) -->
+  <button class="musicBtn" id="musicBtn" type="button" aria-label="Toggle music">
+    ♪
+  </button>
+  <audio id="bgm" preload="none" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Layer 4: Pages -->
+  <main class="deck" id="deck">
+    <!-- Page 1 -->
+    <section class="page page--center" data-page="0" aria-label="Cover">
+      <div class="content content--title">
+        <h1 class="h1">
+          SP-Assurance<br/>
+          Client Appreciation Dinner
+        </h1>
+        <p class="subtitle">A Celebration of Gratitude and New Beginnings</p>
+      </div>
+    </section>
+
+    <!-- Page 2 -->
+    <section class="page page--message" data-page="1" aria-label="Appreciation message">
+      <div class="content">
+        <div class="message-card">
+          <!-- Gold accent line -->
+          <div class="card-accent" aria-hidden="true"></div>
+
+          <p class="message-line">
+            Thank you for your continued trust and support throughout the past year.
+          </p>
+
+          <p class="message-line">
+            We are truly grateful for the partnership we have built together and the
+            confidence you have placed in our team.
+          </p>
+
+          <p class="message-line">
+            It is our pleasure to invite you to join us for an evening of appreciation,
+            connection, and celebration as we welcome the new year together.
+          </p>
+
+          <div class="message-footer">
+            Assurance is an authorised representative of AIA Singapore Private Limited.<br/>
+            This event is organised by L&L Atelier on behalf of the Assurance team.
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3 -->
+    <section class="page page--info" data-page="2" aria-label="Event details">
+      <div class="content">
+        <div class="infoStack cards--group">
+
+          <!-- Block 1: Date & Time -->
+          <div class="infoBlock">
+            <div class="infoTag">DATE &amp; TIME</div>
+
+            <div class="infoTitle">08 February 2026 (Sunday)</div>
+            <div class="infoTitle">Dinner</div>
+
+            <div class="infoLines">
+              <div class="infoLine">
+                <span class="infoLine__time">17:00</span>
+                <span class="infoLine__desc">Guest Registration</span>
+              </div>
+              <div class="infoLine">
+                <span class="infoLine__time">18:00 ~ 21:00</span>
+                <span class="infoTitle">-SHOW TIME-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 2: Venue & Address -->
+          <div class="infoBlock">
+            <div class="infoTag">VENUE &amp; ADDRESS</div>
+
+            <div class="infoTitle">Flower Field Hall</div>
+            <div class="infoLines">
+              <div class="infoAddress">
+                Gardens by the Bay, 211 Marina Way,<br/>
+                Singapore 018977
+              </div>
+            </div>
+          </div>
+
+          <!-- Block 3: What to Expect -->
+          <div class="infoBlock">
+            <div class="infoTag">What to Expect</div>
+
+            <div class="infoTitle">Interactive Games, Exciting Shows</div>
+            <div class="infoTitle">Special Surprises</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Page 4 -->
+    <section class="page page--form" data-page="3" aria-label="Registration">
+      <div class="content">
+        <div class="formCard formCard--compact">
+          <div class="infoTag">REGISTRATION</div>
+          <p class="formNote">Registration deadline: <b>05 February 2026</b>. Children are welcome.</p>
+
+          <form id="rsvpForm" class="form form--compact" novalidate>
+            <div class="field">
+              <label class="formLabel">Agent Name <span class="req">*</span></label>
+              <select class="formControl" name="agentName" id="agentName" required>
+                <option value="">Select an agent</option>
+                <option>Steve Sim Zi Guang</option>
+                <option>Yu Ting</option>
+                <option>Crystal Zhang jing</option>
+                <option>Claudia Ong Wei Peng</option>
+                <option>Nicholas Fung</option>
+                <option>Angel Lim Ke Hsin</option>
+                <option>Valerie</option>
+                <option>Athena Tan</option>
+                <option>Wen Zilong</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="formLabel">Name <span class="req">*</span></label>
+              <input class="formControl" name="name" type="text" autocomplete="name"
+                    placeholder="Please enter your name" required />
+            </div>
+
+            <div class="field">
+              <label class="formLabel">Contact No. <span class="req">*</span></label>
+              <input class="formControl" name="mobile" type="tel" autocomplete="tel"
+                    placeholder="Please enter a valid mobile number" required />
+            </div>
+
+            <div class="fieldRow">
+              <div class="field">
+                <label class="formLabel">Adult Pax <span class="req">*</span></label>
+                <select class="formControl" name="adultPax" required>
+                  <option value="">Select</option>
+                  <option>1</option>
+                  <option>2</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label class="formLabel">Child Pax</label>
+                <select class="formControl" name="childPax">
+                  <option value="0">0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="formLabel">Note (optional)</label>
+              <!-- 只一行：用 input，不用 textarea -->
+              <input class="formControl" name="note" id="note" type="text" placeholder="Optional" />
+            </div>
+
+            <div class="status" id="statusBox" aria-live="polite"></div>
+            <button class="btn btnSubmit" id="submitBtn" type="submit">Submit</button>
+          </form>
+
+          <div id="successBox" class="success" hidden>
+            <h3 class="h3">Registration Confirmed</h3>
+            <p>Thank you for registering. We look forward to welcoming you at the event.</p>
+            <p class="muted">Should you need to make any changes, please contact us directly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+ 
+  <!-- Layer 5: Navigation cues -->
+  <div class="navCues" aria-hidden="true">
+    <button class="navBtn navBtn--up" id="prevBtn" type="button">↑</button>
+    <div class="pager" id="pager">1 / 4</div>
+    <button class="navBtn navBtn--down" id="nextBtn" type="button">↓</button>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
