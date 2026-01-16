@@ -4,7 +4,7 @@
 const TOTAL_PAGES = 4;
 
 // Paste your Apps Script Web App URL here:
-const ENDPOINT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+const ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyAlDDrAFjGAGjB9LI1_1AIKKAeT16fVSIuP4JTeoZA2Fo8bNWZONwlM2XQi16dSE4/exec";
 
 /***********************
  * Paging
