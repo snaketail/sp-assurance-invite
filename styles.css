@@ -1114,7 +1114,7 @@ input:focus, select:focus, textarea:focus{
   /* 只调整 Page 3/4 的 content，不影响其他页面 */
   .page--info .content,
   .page--form .content{
-    margin-top: 60px;       /* 原来是 72px，改小就会整体上移 */
+    margin-top: 100px;       /* 原来是 72px，改小就会整体上移 */
     padding-top: 0;
     padding-bottom: 84px;   /* 给底部导航留空间，避免遮挡 */
   }
@@ -1124,7 +1124,7 @@ input:focus, select:focus, textarea:focus{
 @media (max-width: 480px){
   .page--info .content,
   .page--form .content{
-    margin-top: 40px;
+    margin-top: 60px;
     padding-bottom: 92px;
   }
 }
