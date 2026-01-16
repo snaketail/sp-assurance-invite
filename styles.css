@@ -1103,26 +1103,28 @@ input:focus, select:focus, textarea:focus{
   }
 }
 
-/* =========================
-   MOBILE OPTIMIZATION
-   Page 3 & Page 4 card position
-   ========================= */
-@media (max-width: 768px) {
-
-  /* Page 3 cards container */
-  .page-3 .cards-wrapper,
-  .page-4 .form-wrapper {
-    min-height: auto;          /* remove forced vertical centering */
-    padding-top: 10vh;         /* move content higher */
-    padding-bottom: 6vh;
-    align-items: center;
-    justify-content: flex-start;
+/* === Mobile: move Page 3 & Page 4 content higher === */
+@media (max-width: 768px){
+  /* 让内容从上开始排，而不是垂直居中 */
+  .page--info,
+  .page--form{
+    align-items: flex-start;
   }
 
-  /* Individual cards */
-  .page-3 .info-card,
-  .page-4 .form-card {
-    margin-top: 0;
-    transform: translateY(-15vh); /* lift cards upward */
+  /* 只调整 Page 3/4 的 content，不影响其他页面 */
+  .page--info .content,
+  .page--form .content{
+    margin-top: 38px;       /* 原来是 72px，改小就会整体上移 */
+    padding-top: 0;
+    padding-bottom: 84px;   /* 给底部导航留空间，避免遮挡 */
+  }
+}
+
+/* 更小屏（手机）再提一点 */
+@media (max-width: 480px){
+  .page--info .content,
+  .page--form .content{
+    margin-top: 28px;
+    padding-bottom: 92px;
   }
 }
