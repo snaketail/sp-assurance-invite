@@ -1123,6 +1123,6 @@ input:focus, select:focus, textarea:focus{
   .page-3 .info-card,
   .page-4 .form-card {
     margin-top: 0;
-    transform: translateY(-4vh); /* lift cards upward */
+    transform: translateY(-8vh); /* lift cards upward */
   }
 }
