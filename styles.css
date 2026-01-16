@@ -1100,7 +1100,7 @@ input:focus, select:focus, textarea:focus{
   }
   .page--facts .content,
   .page--form .content{
-    margin-top: calc(55px + env(safe-area-inset-top));
+    margin-top: calc(45px + env(safe-area-inset-top));
     padding-top: 0;
   }
 
