@@ -1102,3 +1102,27 @@ input:focus, select:focus, textarea:focus{
     border-radius: 14px;
   }
 }
+
+/* =========================
+   MOBILE OPTIMIZATION
+   Page 3 & Page 4 card position
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Page 3 cards container */
+  .page-3 .cards-wrapper,
+  .page-4 .form-wrapper {
+    min-height: auto;          /* remove forced vertical centering */
+    padding-top: 10vh;         /* move content higher */
+    padding-bottom: 6vh;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Individual cards */
+  .page-3 .info-card,
+  .page-4 .form-card {
+    margin-top: 0;
+    transform: translateY(-4vh); /* lift cards upward */
+  }
+}
